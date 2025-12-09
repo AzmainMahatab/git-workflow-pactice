@@ -1,0 +1,17 @@
+name: cd.yml
+on:
+  pull_request: #Accepted PRs only
+    branches: [ main ]
+    paths-ignore: [ "**.md" ]
+  release:
+    types: [ published ] # Only runs when you click "Create Release" in GitHub UI
+
+jobs:
+  verify-build:
+    uses: ./.github/workflows/reusable-build.yml
+  publish:
+    needs: verify-build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - run: echo "Publish to Maven Central"

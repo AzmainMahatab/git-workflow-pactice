@@ -1,0 +1,15 @@
+name: CI
+on:
+  pull_request:
+    branches: [ main ]
+    paths-ignore: [ "**.md" ] # Don't run tests if I just fixed a typo in README
+
+jobs:
+  build-test:
+    uses: ./.github/workflows/reusable-build.yml
+
+  report:
+    needs: build-test
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "All good!"
