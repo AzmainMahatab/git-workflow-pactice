@@ -25,7 +25,7 @@ jobs:
 
 
       - name: Build
-        run: echo "Hello" > dist/file.txt
+        run: mkdir -p dist && echo "Hello" > dist/file.txt
 
       - name: Run Tests
         run: grep -q "Hello" dist/file.txt || { echo "Build failed!"; exit 1; }
