@@ -1,12 +1,18 @@
-name: CI
+name: CI workflow
 on:
   pull_request:
     branches: [ main ]
+    types: [ opened, synchronize, reopened, ready_for_review ] # New, after
     paths-ignore: [ "**.md" ] # Don't run tests if I just fixed a typo in README
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true # Cancel previous runs of this workflow for pull requests
 
 jobs:
   build-test:
-    uses: ./.github/workflows/reusable-build.yml
+    if: github.event.pull_request.draft == false
+    uses: ./.github/workflows/build-test.yml
 
   report:
     needs: build-test

@@ -1,0 +1,38 @@
+name: Build Logic (Reusable)
+on:
+  workflow_call: # Called by other workflows
+  workflow_dispatch: # Adds UI button
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      #Setup Environments
+      #- name: Setup Java
+      #  uses: actions/setup-java@v5
+      #  with:
+      #    java-version: '21'
+      #    distribution: 'temurin'
+      #
+      #- name: Setup Python
+      #  uses: actions/setup-python@v6
+      #  with:
+      #    python-version: '3.14'
+
+      #- uses: ./.github/actions/setup-python # Use action from repo
+
+
+      - name: Build
+        run: echo "Hello" > dist/file.txt
+
+      - name: Run Tests
+        run: grep -q "Hello" dist/file.txt || { echo "Build failed!"; exit 1; }
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v5
+        with:
+          #          name: dist, upload by name
+          path: dist/
+          retention-days: 7
