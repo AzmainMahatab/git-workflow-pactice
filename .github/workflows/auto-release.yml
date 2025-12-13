@@ -2,7 +2,7 @@ name: Auto Release workflow
 on:
   push:
     branches: # Accepted PRs on main
-      - main
+      - master
     paths:
       - 'VERSION' # only if version file changed
 
