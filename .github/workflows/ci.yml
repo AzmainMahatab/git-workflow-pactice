@@ -5,6 +5,7 @@ on:
     branches: [ main ]
     types: [ opened, synchronize, reopened, ready_for_review ] # New, after
     paths-ignore: [ "**.md" ] # Don't run tests if I just fixed a typo in README
+  workflow_dispatch: # Adds UI button
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
