@@ -19,6 +19,8 @@ jobs:
       - run: echo "Publish to Maven Central"
 
   release:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     needs: verify-build
     steps:
