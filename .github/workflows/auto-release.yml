@@ -24,8 +24,9 @@ jobs:
     steps:
       - name: Get artifact
         uses: actions/download-artifact@v6
-      #        with:
-      #          name: dist, download by name
+        with:
+          name: dist-files # if you dont specify name, it will download all artifacts
+          path: dist # if you dont specify path, it will download to root
       - name: FileTree
         run: ls -R
       - name: Release

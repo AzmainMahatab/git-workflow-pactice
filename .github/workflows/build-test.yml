@@ -33,6 +33,6 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v5
         with:
-          #          name: dist, upload by name
+          name: dist-files #id for retrival
           path: dist/
           retention-days: 7
