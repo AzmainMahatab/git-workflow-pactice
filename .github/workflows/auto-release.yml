@@ -25,7 +25,7 @@ jobs:
     needs: verify-build
     steps:
       - name: Get artifact
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: dist-files # if you dont specify name, it will download all artifacts
           path: dist # if you dont specify path, it will download to root
