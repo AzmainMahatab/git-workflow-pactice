@@ -31,7 +31,7 @@ jobs:
         run: grep -q "Hello" dist/file.txt || { echo "Build failed!"; exit 1; }
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: dist-files #id for retrival
           path: dist/
