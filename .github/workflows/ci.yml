@@ -27,6 +27,9 @@ jobs:
     needs: report
     # Only run for Dependabot PRs
     if: github.actor == 'dependabot[bot]'
+    permissions:
+      pull-requests: write
+      contents: write
     steps:
       - name: Enable auto-merge for Dependabot PRs
         run: gh pr merge --auto --squash "$PR_URL"
