@@ -1,0 +1,30 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  // 1. Run early Monday morning (Dhaka time)
+  "schedule": ["before 8am on Monday"],
+
+  // 2. STRICT SAFETY: Rebase immediately if main changes.
+  // This ensures we never merge code that hasn't been tested against the latest main.
+  "rebaseWhen": "behind-base-branch",
+  
+  // 3. Auto-merge settings (Flipping the switch for you)
+  "automerge": true,
+  "platformAutomerge": true,
+  
+  // 4. Reduce Noise
+  "packageRules": [
+    {
+      // Group all minor/patch updates into one single PR per week
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "all non-major dependencies"
+    },
+    {
+      // Auto-merge low risk linting tools immediately (ignoring schedule)
+      "matchPackageNames": ["eslint", "prettier"],
+      "automerge": true
+    }
+  ]
+}
