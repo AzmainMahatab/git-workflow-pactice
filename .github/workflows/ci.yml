@@ -1,3 +1,4 @@
+# does nothing, just a trigger extra
 name: CI workflow
 on:
   pull_request:
