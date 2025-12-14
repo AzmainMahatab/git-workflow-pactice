@@ -17,13 +17,16 @@ jobs:
         uses: actions/download-artifact@v6
         with:
           path: dist
+
       - name: FileTree
         run: ls -R
+
       - name: Upload Release Asset
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ github.ref_name }}
           files: dist/*
+
       - name: Publish to Maven Central
         run: echo "Publish to Maven Central" && cat dist/file.txt
 

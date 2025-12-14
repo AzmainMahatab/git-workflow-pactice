@@ -29,12 +29,17 @@ jobs:
         with:
           name: dist-files # if you dont specify name, it will download all artifacts
           path: dist # if you dont specify path, it will download to root
+
       - name: FileTree
         run: ls -R
+
+      - name: Read VERSION file
+        run: echo "VERSION_TAG=$(cat VERSION | xargs)" >> $GITHUB_ENV
+
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ github.ref_name }}
+          tag_name: v${{ env.VERSION_TAG }}
           #name: Holiday Update #Commercial release name
           files: dist/*
           draft: false
